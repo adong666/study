@@ -1,0 +1,27 @@
+在GitHub上查看PDF文件时，似乎没有办法让浏览器仅  显示  文件而不是下载文件。
+
+这些链接都不起作用，而这些是我唯一能到达的链接（或源于使用源代码的行为）：
+
+https://github.com/vermiculus/l3obj/blob/master/l3obj.pdf
+https://github.com/vermiculus/l3obj/blob/master/l3obj.pdf?raw=true
+https://raw.github.com/vermiculus/l3obj/master/l3obj.pdf
+
+
+Github  content-disposition: attachment 用于PDF，PDF可自动在github.com上下载文件。您可以将文件托管在GitHub提供的静态页面上，该页面可以链接到该文件并在更新PDF时进行更新。为此，您可以看到  github pages。
+
+摘要
+
+创建一个名为的仓库  USERNAME.github.io。
+在该仓库中，单击“设置”，然后单击“自动页面生成器”，然后完成向导以发布  用户页面。
+返回到内容库，然后单击“设置”，再单击“自动页面生成器”，然后完成向导以发布  项目页面。（逻辑上，项目页面的文件将放在一个特殊目录中，但是GitHub将它们放在  gh-pages  分支中。不要将该分支与主目录合并。）
+将gh-pages  分支同步  到您的计算机，然后复制为PDF：
+
+git checkout gh-pages
+git checkout master -- 'docs/*.pdf'
+
+提交更改并将其推送到GitHub。
+现在回到GitHub上的仓库，并使用自动页面生成器来编辑项目页面，并添加以下形式的这些PDF的链接：
+
+[Intro.pdf](http://USERNAME.github.io/REPONAME/docs/Intro.pdf).
+
+重新发布项目页面。
